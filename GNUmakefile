@@ -103,6 +103,10 @@ CFLAGS += -pthread
 LDFLAGS += -pthread
 endif
 
+ifeq ($(uname_S),Haiku)
+LDFLAGS += -lgnu
+endif
+
 ifneq ($(findstring MINGW,$(uname_S))$(findstring MSYS,$(uname_S)),)
 LDFLAGS += -lpthread -lwinmm
 endif

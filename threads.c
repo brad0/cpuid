@@ -49,6 +49,20 @@
 #include <pthread.h>
 #include <sched.h>
 
+#elif defined(TARGET_OS_HAIKU)
+
+#include <pthread.h>
+#include <sched.h>
+
+#define CPUSET_T cpuset_t
+#define CPUSET_MASK_T cpuset_mask
+
+#include <BeBuild.h>
+
+#if (B_HAIKU_VERSION <= B_HAIKU_VERSION_1_BETA_5)
+	#define CPU_ZERO CPUSET_ZERO
+#endif
+
 #elif defined(TARGET_OS_SOLARIS)
 #include <string.h>
 #include <unistd.h>
@@ -195,7 +209,7 @@ int thread_bind_native(__unused_variable struct cpuid_state_t *state, uint32_t i
 
 	return (ret != FALSE) ? 0 : 1;
 
-#elif defined(TARGET_OS_LINUX) || defined(TARGET_OS_FREEBSD)
+#elif defined(TARGET_OS_LINUX) || defined(TARGET_OS_FREEBSD) || defined(TARGET_OS_HAIKU)
 
 	int ret;
 
@@ -232,7 +246,11 @@ int thread_bind_native(__unused_variable struct cpuid_state_t *state, uint32_t i
 
 	mask = 1ULL << (unsigned long long)id;
 
+#if defined(TARGET_OS_HAIKU)
+	((unsigned long *)set[set_id].bits)[subset_id] |= mask;
+#else
 	((unsigned long *)set[set_id].__bits)[subset_id] |= mask;
+#endif
 	ret = pthread_setaffinity_np(pth, setsize, set);
 	free(set);
 #endif
