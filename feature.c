@@ -258,11 +258,11 @@ static const struct cpu_feature_t features [] = {
 /*	{ 0x00000007, 0, REG_ECX, 0x00200000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
 	{ 0x00000007, 0, REG_ECX, 0x00400000, VENDOR_INTEL | VENDOR_AMD, "Read Processor ID (RDPID)"},
 	{ 0x00000007, 0, REG_ECX, 0x00800000, VENDOR_INTEL             , "Key locker (KL)"},
-	{ 0x00000007, 0, REG_ECX, 0x01000000, VENDOR_INTEL             , "OS bus-lock detection"},
+	{ 0x00000007, 0, REG_ECX, 0x01000000, VENDOR_INTEL | VENDOR_AMD, "OS bus-lock detection"},
 	{ 0x00000007, 0, REG_ECX, 0x02000000, VENDOR_INTEL             , "Cache Line Demote (CLDEMOTE)"},
 /*	{ 0x00000007, 0, REG_ECX, 0x04000000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
-	{ 0x00000007, 0, REG_ECX, 0x08000000, VENDOR_INTEL             , "32-bit Direct Stores (MOVDIRI)"},
-	{ 0x00000007, 0, REG_ECX, 0x10000000, VENDOR_INTEL             , "64-bit Direct Stores (MOVDIRI64B)"},
+	{ 0x00000007, 0, REG_ECX, 0x08000000, VENDOR_INTEL | VENDOR_AMD, "32-bit Direct Stores (MOVDIRI)"},
+	{ 0x00000007, 0, REG_ECX, 0x10000000, VENDOR_INTEL | VENDOR_AMD, "64-bit Direct Stores (MOVDIRI64B)"},
 	{ 0x00000007, 0, REG_ECX, 0x20000000, VENDOR_INTEL             , "Enqueue Stores (ENQCMD)"},
 	{ 0x00000007, 0, REG_ECX, 0x40000000, VENDOR_INTEL             , "SGX Launch Configuration (SGX_LC)"},
 	{ 0x00000007, 0, REG_ECX, 0x80000000, VENDOR_INTEL             , "Protection keys for supervisor-mode pages (PKS)"},
