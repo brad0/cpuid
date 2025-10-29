@@ -303,7 +303,7 @@ static const struct cpu_feature_t features [] = {
 	{ 0x00000007, 1, REG_EAX, 0x00000001, VENDOR_INTEL             , "SHA512 instructions"},
 	{ 0x00000007, 1, REG_EAX, 0x00000002, VENDOR_INTEL             , "SM3 instructions"},
 	{ 0x00000007, 1, REG_EAX, 0x00000004, VENDOR_INTEL             , "SM4 instructions"},
-/*	{ 0x00000007, 1, REG_EAX, 0x00000008, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
+	{ 0x00000007, 1, REG_EAX, 0x00000008, VENDOR_INTEL             , "RAO-INT"},
 	{ 0x00000007, 1, REG_EAX, 0x00000010, VENDOR_INTEL | VENDOR_AMD, "AVX Vector Neural Network Instructions (AVX-VNNI)"},
 	{ 0x00000007, 1, REG_EAX, 0x00000020, VENDOR_INTEL | VENDOR_AMD, "Vector Neural Network BFLOAT16 (AVX512_BF16)"},
 	{ 0x00000007, 1, REG_EAX, 0x00000040, VENDOR_INTEL             , "Linear Address Space Separation"},
@@ -317,10 +317,10 @@ static const struct cpu_feature_t features [] = {
 /*	{ 0x00000007, 1, REG_EAX, 0x00004000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
 /*	{ 0x00000007, 1, REG_EAX, 0x00008000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
 /*	{ 0x00000007, 1, REG_EAX, 0x00010000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
-/*	{ 0x00000007, 1, REG_EAX, 0x00020000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
-/*	{ 0x00000007, 1, REG_EAX, 0x00040000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
+	{ 0x00000007, 1, REG_EAX, 0x00020000, VENDOR_INTEL             , "Flexible Return and Event Delivery (FRED)"},
+	{ 0x00000007, 1, REG_EAX, 0x00040000, VENDOR_INTEL             , "Load into IA32_KERNEL_GS_BASE (LKGS)"},
 	{ 0x00000007, 1, REG_EAX, 0x00080000, VENDOR_INTEL             , "WRMSRNS instruction"},
-/*	{ 0x00000007, 1, REG_EAX, 0x00100000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
+	{ 0x00000007, 1, REG_EAX, 0x00100000, VENDOR_INTEL             , "NMI-source reporting (NMI_SRC)"},
 	{ 0x00000007, 1, REG_EAX, 0x00200000, VENDOR_INTEL             , "AMX-FP16 instructions"},
 	{ 0x00000007, 1, REG_EAX, 0x00400000, VENDOR_INTEL             , "History reset (HRESET)"},
 	{ 0x00000007, 1, REG_EAX, 0x00800000, VENDOR_INTEL             , "AVX-IFMA instructions"},
@@ -331,10 +331,10 @@ static const struct cpu_feature_t features [] = {
 /*	{ 0x00000007, 1, REG_EAX, 0x10000000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
 /*	{ 0x00000007, 1, REG_EAX, 0x20000000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
 	{ 0x00000007, 1, REG_EAX, 0x40000000, VENDOR_INTEL             , "Supports INVD after BIOS done"},
-/*	{ 0x00000007, 1, REG_EAX, 0x80000000, VENDOR_INTEL | VENDOR_AMD, ""}, */   /* Reserved */
+	{ 0x00000007, 1, REG_EAX, 0x80000000, VENDOR_INTEL             , "MOVRS"},
 
 	{ 0x00000007, 1, REG_EBX, 0x00000001, VENDOR_INTEL             , "IA32_PPIN and IA32_PPIN_CTL"},
-/*	{ 0x00000007, 1, REG_EBX, 0x00000002, VENDOR_INTEL             , ""}, */   /* Reserved */
+	{ 0x00000007, 1, REG_EBX, 0x00000002, VENDOR_INTEL             , "PBNDKB instruction and IA32_TSE_CAPABILITY"},
 /*	{ 0x00000007, 1, REG_EBX, 0x00000004, VENDOR_INTEL             , ""}, */   /* Reserved */
 	{ 0x00000007, 1, REG_EBX, 0x00000008, VENDOR_INTEL             , "CPUID max val limit removed"},
 /*	{ 0x00000007, 1, REG_EBX, 0x00000010, VENDOR_INTEL             , ""}, */   /* Reserved */
