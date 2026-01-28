@@ -989,6 +989,7 @@ static const char *xsave_feature_name(uint32_t bit)
 static void handle_std_ext_state(struct cpu_regs_t *regs, struct cpuid_state_t *state)
 {
 	int i, j, max = 0;
+	uint64_t feature_mask = 0;
 
 	if ((state->vendor & (VENDOR_INTEL | VENDOR_AMD)) == 0)
 		return;
@@ -1054,7 +1055,9 @@ static void handle_std_ext_state(struct cpu_regs_t *regs, struct cpuid_state_t *
 			printf("  Maximum size required for all supported features: %3d bytes\n",
 				regs->ecx);
 
-			max = popcnt(regs->eax) + popcnt(regs->edx) - 1;
+			// eax is checked to be non-zero above, so at least one bit is set
+			feature_mask = (uint64_t)regs->edx << 32 | (uint64_t)regs->eax;
+			max = bit_scan_reverse(feature_mask);
 			printf("\n");
 		}
 	}

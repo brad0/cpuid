@@ -25,6 +25,7 @@
 size_t safe_strcat(char *dst, const char *src, size_t siz);
 uint32_t popcnt(uint32_t v);
 uint32_t count_trailing_zero_bits(uint32_t v);
+uint32_t bit_scan_reverse(uint64_t v);
 void squeeze(char *str);
 double time_sec(void);
 #ifdef TARGET_OS_WINDOWS

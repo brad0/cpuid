@@ -84,6 +84,19 @@ uint32_t count_trailing_zero_bits(uint32_t v)
 	return c;
 }
 
+uint32_t bit_scan_reverse(uint64_t v) {
+	uint32_t c;
+
+	for (c = CHAR_BIT * sizeof(v) - 1; c > 0; c--) {
+		if (v & 0x80000000) {
+			break;
+		}
+		v <<= 1;
+	}
+
+	return c;
+}
+
 void squeeze(char *str)
 {
 	int r; /* next character to be read */
