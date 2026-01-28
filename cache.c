@@ -245,13 +245,13 @@ static const char *type(cache_type_t type)
 
 static const char *level(cache_level_t level)
 {
-	static char buffer[8];
-	buffer[0] = 0;
+	static char buffer[16];
 	if (level == INVALID_LEVEL || level > LMAX)
 		return NULL;
+	memset(buffer, 0, sizeof(buffer));
 	if (level == NO)
 		return buffer;
-	sprintf(buffer, "L%d", (int)level);
+	snprintf(buffer, sizeof(buffer), "L%d", (int)level);
 	return buffer;
 }
 
@@ -266,23 +266,25 @@ static const char *associativity(uint8_t assoc)
 	case 0xFF:
 		return "fully associative";
 	}
-	sprintf(buffer, "%d-way set associative", assoc);
+	memset(buffer, 0, sizeof(buffer));
+	snprintf(buffer, sizeof(buffer), "%d-way set associative", assoc);
 	return buffer;
 }
 
 static const char *size(uint32_t size)
 {
 	static char buffer[16];
+	memset(buffer, 0, sizeof(buffer));
 	if (size >= 1024) {
-		sprintf(buffer, "%dMB", size / 1024);
+		snprintf(buffer, sizeof(buffer), "%dMB", size / 1024);
 	} else {
-		sprintf(buffer, "%dKB", size);
+		snprintf(buffer, sizeof(buffer), "%dKB", size);
 	}
 	return buffer;
 }
 
 #define ADD_LINE(fmt, ...) { \
-		sprintf(temp, "%*s" fmt "\n", indent, "", __VA_ARGS__); \
+		snprintf(temp, sizeof(temp), "%*s" fmt "\n", indent, "", __VA_ARGS__); \
 		safe_strcat(buffer, temp, bufsize); \
 	}
 
@@ -309,7 +311,7 @@ char *describe_cache(uint32_t ncpus, const struct cache_desc_t *desc, char *buff
 	case STOREONLY_TLB:
 		/* e.g. "Code TLB: 2MB or 4MB pages" */
 		if (desc->level != NO) {
-			sprintf(temp1, "%s %s", level(desc->level), type(desc->type));
+			snprintf(temp1, sizeof(temp1), "%s %s", level(desc->level), type(desc->type));
 			ADD_LINE("%17s: %s",
 				temp1,
 				page_types(desc->attrs));
