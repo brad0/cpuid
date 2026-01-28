@@ -83,6 +83,10 @@ extern int utilBindThreadToCPU(int n);
 extern int utilUnbindThreadFromCPU(void);
 #endif
 
+#elif defined(TARGET_OS_OPENBSD)
+
+#include <unistd.h>
+
 #endif
 
 #include "state.h"
@@ -130,7 +134,7 @@ uint32_t thread_count_native(struct cpuid_state_t *state)
 		return 1;
 
 	return count;
-#elif defined(TARGET_OS_SOLARIS)
+#elif defined(TARGET_OS_SOLARIS) || defined(TARGET_OS_OPENBSD)
 	long count;
 
 	if ((count = sysconf(_SC_NPROCESSORS_ONLN)) == -1)
@@ -306,6 +310,12 @@ int thread_bind_native(__unused_variable struct cpuid_state_t *state, uint32_t i
 		state->cpu_bound_index = id;
 
 	return ret == 0 ? 0 : 1;
+
+#elif defined(TARGET_OS_OPENBSD)
+
+	(void)id;
+	return 0;
+
 #else
 #error "thread_bind_native() not defined for this platform"
 #endif

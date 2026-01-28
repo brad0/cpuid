@@ -103,6 +103,12 @@ CFLAGS += -pthread
 LDFLAGS += -pthread
 endif
 
+ifeq ($(uname_S),OpenBSD)
+CC := cc
+CFLAGS += -pthread
+LDFLAGS += -pthread
+endif
+
 ifeq ($(uname_S),Haiku)
 LDFLAGS += -lgnu
 endif
