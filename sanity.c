@@ -158,6 +158,12 @@ static int sane_apicid(struct cpuid_state_t *state)
 	thread_handle_t *busy_workers = NULL,
 	                *apic_workers = NULL;
 
+	/* Skip APIC ID sanity check if thread_bind_native is not available on this
+	 * platform
+	 */
+	if (thread_bind_native(NULL, 0) != 0)
+		return 1;
+
 	worker_count = hwthreads / 4 + 1;
 
 	printf("Verifying APIC ID sanity:\n");

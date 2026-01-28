@@ -341,15 +341,14 @@ int main(int argc, char **argv)
 	if (cpu_start == -1) {
 		cpu_start = 0;
 		cpu_end = state.thread_count(&state) - 1;
-#ifdef TARGET_OS_MACOSX
-		/* Because thread_bind() doesn't work on Mac. Stupidest
+
+		/* Because thread_bind() doesn't work on some platforms. Stupidest
 		 * operating system design ever.
 		 */
-		if (!file) {
+		if (!file && thread_bind_native(NULL, 0)) {
 			cpu_start = 0;
 			cpu_end = 0;
 		}
-#endif
 	} else {
 		cpu_end = cpu_start;
 	}

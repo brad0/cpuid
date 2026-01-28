@@ -25,7 +25,7 @@
 
 #define MAX_CPUS 1024
 
-#ifdef TARGET_OS_LINUX
+#if defined(TARGET_OS_LINUX)
 
 #include <pthread.h>
 #include <sched.h>
@@ -314,7 +314,7 @@ int thread_bind_native(__unused_variable struct cpuid_state_t *state, uint32_t i
 #elif defined(TARGET_OS_OPENBSD)
 
 	(void)id;
-	return 0;
+	return 1;
 
 #else
 #error "thread_bind_native() not defined for this platform"

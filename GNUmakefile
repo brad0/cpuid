@@ -104,7 +104,7 @@ LDFLAGS += -pthread
 endif
 
 ifeq ($(uname_S),OpenBSD)
-CC := cc
+CC := clang
 CFLAGS += -pthread
 LDFLAGS += -pthread
 endif
